@@ -1,28 +1,13 @@
-package com.vishank.sakila.entities;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+package com.vishank.sakila.dtos;
 
 import java.sql.Timestamp;
 import java.util.Collection;
 
-@Entity
-@Table(name = "category", schema = "sakilaspringboot")
-public class CategoryEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "category_id", columnDefinition = "SMALLINT UNSIGNED", nullable = false)
+public class CategoryDto {
     private long categoryId;
-    @Basic
-    @Column(name = "name", nullable = false, length = 25)
     private String name;
-    @Basic
-    @Column(name = "last_update", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", nullable = false)
     private Timestamp lastUpdate;
-    @OneToMany(mappedBy = "categoryByCategoryId")
-    @JsonManagedReference
-    private Collection<FilmCategoryEntity> filmCategoriesByCategoryId;
+    private Collection<FilmCategoryDto> filmCategoriesByCategoryId;
 
     public long getCategoryId() {
         return categoryId;
@@ -48,17 +33,17 @@ public class CategoryEntity {
         this.lastUpdate = lastUpdate;
     }
 
-    public Collection<FilmCategoryEntity> getFilmCategoriesByCategoryId() {
+    public Collection<FilmCategoryDto> getFilmCategoriesByCategoryId() {
         return filmCategoriesByCategoryId;
     }
 
-    public void setFilmCategoriesByCategoryId(Collection<FilmCategoryEntity> filmCategoriesByCategoryId) {
+    public void setFilmCategoriesByCategoryId(Collection<FilmCategoryDto> filmCategoriesByCategoryId) {
         this.filmCategoriesByCategoryId = filmCategoriesByCategoryId;
     }
 
     @Override
     public String toString() {
-        return "CategoryEntity{" +
+        return "CategoryDto{" +
                 "categoryId=" + categoryId +
                 ", name='" + name + '\'' +
                 ", lastUpdate=" + lastUpdate +

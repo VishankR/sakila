@@ -1,5 +1,7 @@
 package com.vishank.sakila.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -42,14 +44,113 @@ public class AddressEntity {
     @JoinColumn(name = "city_id", referencedColumnName = "city_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_address_city", value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`) ON DELETE RESTRICT ON UPDATE CASCADE"))
 //    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JsonBackReference
     private CityEntity cityByCityId;
     @OneToMany(mappedBy = "addressByAddressId")
+    @JsonManagedReference
     private Collection<CustomerEntity> customersByAddressId;
     @OneToMany(mappedBy = "addressByAddressId")
+    @JsonManagedReference
     private Collection<StaffEntity> staffByAddressId;
     @OneToMany(mappedBy = "addressByAddressId")
+    @JsonManagedReference
     private Collection<StoreEntity> storesByAddressId;
 
+    public long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(long addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public byte[] getLocation() {
+        return location;
+    }
+
+    public void setLocation(byte[] location) {
+        this.location = location;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public CityEntity getCityByCityId() {
+        return cityByCityId;
+    }
+
+    public void setCityByCityId(CityEntity cityByCityId) {
+        this.cityByCityId = cityByCityId;
+    }
+
+    public Collection<CustomerEntity> getCustomersByAddressId() {
+        return customersByAddressId;
+    }
+
+    public void setCustomersByAddressId(Collection<CustomerEntity> customersByAddressId) {
+        this.customersByAddressId = customersByAddressId;
+    }
+
+    public Collection<StaffEntity> getStaffByAddressId() {
+        return staffByAddressId;
+    }
+
+    public void setStaffByAddressId(Collection<StaffEntity> staffByAddressId) {
+        this.staffByAddressId = staffByAddressId;
+    }
+
+    public Collection<StoreEntity> getStoresByAddressId() {
+        return storesByAddressId;
+    }
+
+    public void setStoresByAddressId(Collection<StoreEntity> storesByAddressId) {
+        this.storesByAddressId = storesByAddressId;
+    }
 
     @Override
     public String toString() {

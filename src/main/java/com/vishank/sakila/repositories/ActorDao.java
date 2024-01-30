@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ActorDao {
     public List<ActorEntity> getAllActorEntities();
+    public ActorEntity getActorEntity(long id);
 }

@@ -1,15 +1,14 @@
 package com.vishank.sakila.dtos;
 
-import com.vishank.sakila.entities.ActorEntity;
+import com.vishank.sakila.entities.CategoryEntity;
 import com.vishank.sakila.entities.FilmEntity;
-import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
-public class FilmActorDto {
+public class FilmCategoryDto {
     private Timestamp lastUpdate;
-    private ActorDto actorByActorId;
     private FilmDto filmByFilmId;
+    private CategoryDto categoryByCategoryId;
 
     public Timestamp getLastUpdate() {
         return lastUpdate;
@@ -17,14 +16,6 @@ public class FilmActorDto {
 
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    public ActorDto getActorByActorId() {
-        return actorByActorId;
-    }
-
-    public void setActorByActorId(ActorDto actorByActorId) {
-        this.actorByActorId = actorByActorId;
     }
 
     public FilmDto getFilmByFilmId() {
@@ -35,9 +26,17 @@ public class FilmActorDto {
         this.filmByFilmId = filmByFilmId;
     }
 
+    public CategoryDto getCategoryByCategoryId() {
+        return categoryByCategoryId;
+    }
+
+    public void setCategoryByCategoryId(CategoryDto categoryByCategoryId) {
+        this.categoryByCategoryId = categoryByCategoryId;
+    }
+
     @Override
     public String toString() {
-        return "FilmActorDto{" +
+        return "FilmCategoryDto{" +
                 "lastUpdate=" + lastUpdate +
                 '}';
     }

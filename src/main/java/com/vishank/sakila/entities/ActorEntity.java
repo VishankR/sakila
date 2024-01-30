@@ -1,5 +1,7 @@
 package com.vishank.sakila.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -22,6 +24,7 @@ public class ActorEntity {
     @Column(name = "last_update", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", nullable = false)
     private Timestamp lastUpdate;
     @OneToMany(mappedBy = "actorByActorId")
+    @JsonManagedReference
     private Collection<FilmActorEntity> filmActorsByActorId;
 
     public long getActorId() {

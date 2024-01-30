@@ -1,20 +1,8 @@
-package com.vishank.sakila.entities;
+package com.vishank.sakila.dtos;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "film_text", indexes = {
-        @Index(name = "idx_title_description", columnList = "title, description")
-}, schema = "sakilaspringboot")
-public class FilmTextEntity {
-    @Id
-    @Column(name = "film_id", columnDefinition = "SMALLINT UNSIGNED", nullable = false)
+public class FilmTextDto {
     private long filmId;
-    @Basic
-    @Column(name = "title", nullable = false, length = 255)
     private String title;
-    @Basic
-    @Column(name = "description", nullable = false, length = 255)
     private String description;
 
     public long getFilmId() {
@@ -43,7 +31,7 @@ public class FilmTextEntity {
 
     @Override
     public String toString() {
-        return "FilmTextEntity{" +
+        return "FilmTextDto{" +
                 "filmId=" + filmId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +

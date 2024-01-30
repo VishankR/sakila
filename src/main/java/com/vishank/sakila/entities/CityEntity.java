@@ -1,5 +1,7 @@
 package com.vishank.sakila.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
@@ -20,12 +22,54 @@ public class CityEntity {
     @Column(name = "last_update", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", nullable = false)
     private Timestamp lastUpdate;
     @OneToMany(mappedBy = "cityByCityId")
+    @JsonManagedReference
     private Collection<AddressEntity> addressesByCityId;
     @ManyToOne
     @JoinColumn(name = "country_id", columnDefinition = "SMALLINT UNSIGNED", referencedColumnName = "country_id",
             foreignKey = @ForeignKey(name = "fk_city_country", value = ConstraintMode.CONSTRAINT,
                     foreignKeyDefinition = "FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`) ON DELETE RESTRICT ON UPDATE CASCADE"), nullable = false)
+    @JsonBackReference
     private CountryEntity countryByCountryId;
+
+    public long getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(long cityId) {
+        this.cityId = cityId;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Collection<AddressEntity> getAddressesByCityId() {
+        return addressesByCityId;
+    }
+
+    public void setAddressesByCityId(Collection<AddressEntity> addressesByCityId) {
+        this.addressesByCityId = addressesByCityId;
+    }
+
+    public CountryEntity getCountryByCountryId() {
+        return countryByCountryId;
+    }
+
+    public void setCountryByCountryId(CountryEntity countryByCountryId) {
+        this.countryByCountryId = countryByCountryId;
+    }
 
     @Override
     public String toString() {

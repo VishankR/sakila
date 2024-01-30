@@ -1,14 +1,11 @@
 package com.vishank.sakila.dtos;
 
-import java.sql.Timestamp;
-import java.util.Collection;
-
-public class ActorDto {
+public class ActorInfoDto {
+    private long id;
     private long actorId;
     private String firstName;
     private String lastName;
-    private Timestamp lastUpdate;
-    private Collection<FilmActorDto> filmActorsByActorId;
+    private String filmInfo;
 
     public long getActorId() {
         return actorId;
@@ -34,30 +31,21 @@ public class ActorDto {
         this.lastName = lastName;
     }
 
-    public Timestamp getLastUpdate() {
-        return lastUpdate;
+    public String getFilmInfo() {
+        return filmInfo;
     }
 
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Collection<FilmActorDto> getFilmActorsByActorId() {
-        return filmActorsByActorId;
-    }
-
-    public void setFilmActorsByActorId(Collection<FilmActorDto> filmActorsByActorId) {
-        this.filmActorsByActorId = filmActorsByActorId;
+    public void setFilmInfo(String filmInfo) {
+        this.filmInfo = filmInfo;
     }
 
     @Override
     public String toString() {
-        return "ActorDto{" +
+        return "ActorInfoDto{" +
                 "actorId=" + actorId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", lastUpdate=" + lastUpdate +
-                ", filmActorsByActorId=" + filmActorsByActorId +
+                ", filmInfo='" + filmInfo + '\'' +
                 '}';
     }
 }

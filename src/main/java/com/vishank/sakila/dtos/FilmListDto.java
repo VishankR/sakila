@@ -1,59 +1,26 @@
-package com.vishank.sakila.entities;
+package com.vishank.sakila.dtos;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.Subselect;
+import com.vishank.sakila.constants.RatingsEnum;
 
 import java.math.BigDecimal;
 
-@Entity
-@Immutable
-@Table(name = "nicer_but_slower_film_list")
-@Subselect("select uuid() as id, nbsfl.* from nicer_but_slower_film_list nbsfl")
-public class NicerButSlowerFilmListEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class FilmListDto {
     private long id;
-
-    @Basic
-    @Column(name = "film_id", nullable = false)
     private long filmId;
-    @Basic
-    @Column(name = "title", nullable = false, length = 128)
     private String title;
-    @Basic
-    @Column(name = "description", nullable = true, length = -1)
     private String description;
-    @Basic
-    @Column(name = "category", nullable = true, length = 25)
     private String category;
-    @Basic
-    @Column(name = "price", length = 6, nullable = false, precision = 2)
     private BigDecimal price;
-    @Basic
-    @Column(name = "length", nullable = true)
     private int length;
-    @Basic
-    @Column(name = "rating", nullable = true)
-    private String rating;
-    @Basic
-    @Column(name = "actors", nullable = true, length = -1)
+    private RatingsEnum.Rating rating;
     private String actors;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public long getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(long filmId) {
-        this.filmId = filmId;
+    public void setFilmId(long fid) {
+        this.filmId = fid;
     }
 
     public String getTitle() {
@@ -96,11 +63,11 @@ public class NicerButSlowerFilmListEntity {
         this.length = length;
     }
 
-    public String getRating() {
+    public RatingsEnum.Rating getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(RatingsEnum.Rating rating) {
         this.rating = rating;
     }
 
@@ -114,7 +81,7 @@ public class NicerButSlowerFilmListEntity {
 
     @Override
     public String toString() {
-        return "NicerButSlowerFilmListEntity{" +
+        return "FilmListDto{" +
                 "filmId=" + filmId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +

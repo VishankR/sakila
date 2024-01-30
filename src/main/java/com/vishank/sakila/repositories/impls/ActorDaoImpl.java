@@ -16,6 +16,7 @@ public class ActorDaoImpl implements ActorDao {
     EntityManager entityManager;
 
     private static final StringBuilder QUERY_FETCH_ALL_ACTOR_ENTITIES= new StringBuilder("select ae from ActorEntity ae");
+    private static final StringBuilder QUERY_FETCH_ACTOR_ENTITY_BY_ID= new StringBuilder("select ae from ActorEntity ae where ae.id = :id");
 
     /**
      * @return @{@link List<ActorEntity>}
@@ -24,5 +25,15 @@ public class ActorDaoImpl implements ActorDao {
     public List<ActorEntity> getAllActorEntities() {
         TypedQuery<ActorEntity> actorEntityTypedQuery = entityManager.createQuery(QUERY_FETCH_ALL_ACTOR_ENTITIES.toString(), ActorEntity.class);
         return actorEntityTypedQuery.getResultList();
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ActorEntity getActorEntity(long id) {
+        TypedQuery<ActorEntity> actorEntityTypedQuery = entityManager.createQuery(QUERY_FETCH_ACTOR_ENTITY_BY_ID.toString(), ActorEntity.class);
+        actorEntityTypedQuery.setParameter("id", id);
+        return actorEntityTypedQuery.getSingleResult();
     }
 }

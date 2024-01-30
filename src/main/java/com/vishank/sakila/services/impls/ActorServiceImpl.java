@@ -20,4 +20,12 @@ public class ActorServiceImpl implements ActorService {
     public List<ActorEntity> getAllActorEntities() {
         return actorDao.getAllActorEntities();
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public ActorEntity getActorEntity(long id) {
+        return actorDao.getActorEntity(id);
+    }
 }

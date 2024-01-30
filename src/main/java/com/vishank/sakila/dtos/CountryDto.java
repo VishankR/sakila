@@ -1,27 +1,13 @@
-package com.vishank.sakila.entities;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+package com.vishank.sakila.dtos;
 
 import java.sql.Timestamp;
 import java.util.Collection;
 
-@Entity
-@Table(name = "country", schema = "sakilaspringboot")
-public class CountryEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "country_id", columnDefinition = "SMALLINT UNSIGNED", nullable = false)
+public class CountryDto {
     private long countryId;
-    @Basic
-    @Column(name = "country", nullable = false, length = 50)
     private String country;
-    @Basic
-    @Column(name = "last_update", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", nullable = false)
     private Timestamp lastUpdate;
-    @OneToMany(mappedBy = "countryByCountryId")
-    @JsonManagedReference
-    private Collection<CityEntity> citiesByCountryId;
+    private Collection<CityDto> citiesByCountryId;
 
     public long getCountryId() {
         return countryId;
@@ -47,17 +33,17 @@ public class CountryEntity {
         this.lastUpdate = lastUpdate;
     }
 
-    public Collection<CityEntity> getCitiesByCountryId() {
+    public Collection<CityDto> getCitiesByCountryId() {
         return citiesByCountryId;
     }
 
-    public void setCitiesByCountryId(Collection<CityEntity> citiesByCountryId) {
+    public void setCitiesByCountryId(Collection<CityDto> citiesByCountryId) {
         this.citiesByCountryId = citiesByCountryId;
     }
 
     @Override
     public String toString() {
-        return "CountryEntity{" +
+        return "CountryDto{" +
                 "countryId=" + countryId +
                 ", country='" + country + '\'' +
                 ", lastUpdate=" + lastUpdate +
